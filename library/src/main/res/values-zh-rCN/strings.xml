@@ -1,0 +1,5 @@
+<resources>
+    <string name="FailedText">加载失败</string>
+    <string name="SuccessText">加载成功</string>
+    <string name="LoadText">正在加载</string>
+</resources>

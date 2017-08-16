@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">library</string>
+    <string name="FailedText">Failed to load</string>
+    <string name="SuccessText">Loaded successfully</string>
+    <string name="LoadText">Loading</string>
 </resources>
