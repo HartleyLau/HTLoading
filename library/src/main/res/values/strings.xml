@@ -1,5 +1,5 @@
 <resources>
     <string name="FailedText">Failed to load</string>
-    <string name="SuccessText">Loaded successfully</string>
+    <string name="SuccessText">Success to load</string>
     <string name="LoadText">Loading</string>
 </resources>

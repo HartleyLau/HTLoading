@@ -8,4 +8,6 @@ import android.view.View
  * Created by Hatim Liu on 2017/8/16.
  */
 class SuccessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+
+
 }
