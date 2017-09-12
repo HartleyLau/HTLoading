@@ -3,6 +3,7 @@ package loadinglibrary.view
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
@@ -49,7 +50,7 @@ class FailedView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
         val rectF = RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding)
         canvas.drawArc(rectF, 0f, endAngle, false, mPaint)
         if (progress in 1f..1.5f) {
-            var mEnd = (mWidth - 2 * mPadding - 2 * SizeUtil.dip2px(context, mGap)) * (progress - 1f) * 2
+            val mEnd = (mWidth - 2 * mPadding - 2 * SizeUtil.dip2px(context, mGap)) * (progress - 1f) * 2
             canvas.drawLine(
                     mPadding + SizeUtil.dip2px(context, mGap),
                     mPadding + SizeUtil.dip2px(context, mGap),
@@ -57,7 +58,7 @@ class FailedView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
                     mPadding + SizeUtil.dip2px(context, mGap) + mEnd, mPaint)
         }
         if (progress in 1.5f..2f) {
-            var mEnd = (mWidth - 2 * mPadding - 2 * SizeUtil.dip2px(context, mGap)) * (progress - 1.5f) * 2
+            val mEnd = (mWidth - 2 * mPadding - 2 * SizeUtil.dip2px(context, mGap)) * (progress - 1.5f) * 2
             canvas.drawLine(
                     mPadding + SizeUtil.dip2px(context, mGap),
                     mPadding + SizeUtil.dip2px(context, mGap),
