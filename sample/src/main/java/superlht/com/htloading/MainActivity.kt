@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val loading = HTLoading(this)
-        loading.show()
         doAsync {
             Thread.sleep(1000)
             uiThread { loading.showFailed() }
