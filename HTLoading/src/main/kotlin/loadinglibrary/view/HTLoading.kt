@@ -3,15 +3,17 @@ package loadinglibrary.view
 import android.app.Dialog
 import android.content.Context
 import android.os.Handler
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import kotlinx.android.synthetic.main.loading_view.view.*
-import loadinglibrary.listener.OnDialogDismissListener
 import loadinglibrary.listener.DrawFinishListener
+import loadinglibrary.listener.OnDialogDismissListener
 import loadinglibrary.manager.HTLoadingManager
 import superlht.com.loadinglibrary.R
 import java.util.*
+
 
 /**
  * Created by Hatim Liu on 2017/8/16.
@@ -64,7 +66,7 @@ class HTLoading(context: Context) : DrawFinishListener {
     }
 
     private fun initStyle() {
-        setSize(manager.dialogSize)
+//        setSize(manager.dialogSize)
         setTextSize(manager.textSize)
     }
 
@@ -170,7 +172,7 @@ class HTLoading(context: Context) : DrawFinishListener {
         view.failedView.startAnim()
     }
 
-    fun setnterceptBack(boolean: Boolean): HTLoading {
+    fun setInterceptBack(boolean: Boolean): HTLoading {
         interceptBack = boolean
         loadingDialog.setCancelable(!interceptBack)
         return this
@@ -179,6 +181,16 @@ class HTLoading(context: Context) : DrawFinishListener {
     fun setTextSize(size: Float): HTLoading {
         textSize = size
         view.text.textSize = textSize
+        return this
+    }
+
+    fun setCustomViewSize(size: Int): HTLoading {
+        view.customView.layoutParams = LinearLayout.LayoutParams(size, size)
+        return this
+    }
+
+    fun setDialogBackground(color: Int): HTLoading {
+        view.loading_dialog.setBackgroundColor(color)
         return this
     }
 
@@ -196,8 +208,14 @@ class HTLoading(context: Context) : DrawFinishListener {
     }
 
     fun setSize(width: Int, height: Int): HTLoading {
-        view.loadingView.layoutParams.height = height
-        view.loadingView.layoutParams.width = width
+        loadingDialog.window.setGravity(Gravity.CENTER)
+        val lp = loadingDialog.window.attributes
+        lp.width = width
+        lp.height = height
+        loadingDialog.window.attributes = lp
+        loadingDialog.setContentView(view.loading_dialog, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT))
+//        view.loadingView.layoutParams.height = height
+//        view.loadingView.layoutParams.width = width
         return this
     }
 

@@ -15,7 +15,7 @@ class HTLoadingManager {
         internal var drawColor: Int = Color.WHITE
         internal var textSize: Float = 18f
         internal var isOpenAnim: Boolean = true
-        internal var dialogSize: Int = 160
+        internal var dialogSize: Int = 400
         internal var interceptBack: Boolean = true
         internal var dismissDelay: Long = 2000
         internal var isAutoDismiss: Boolean = true
