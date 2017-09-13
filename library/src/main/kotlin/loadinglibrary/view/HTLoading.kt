@@ -2,15 +2,14 @@ package loadinglibrary.view
 
 import android.app.Dialog
 import android.content.Context
-import android.util.Log
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
-import android.widget.Toast
 import kotlinx.android.synthetic.main.loading_view.view.*
-import loadinglibrary.listener.DialogDismissListener
-import loadinglibrary.manager.LoadingManager
+import loadinglibrary.listener.OnDialogDismissListener
 import loadinglibrary.listener.DrawFinishListener
+import loadinglibrary.manager.HTLoadingManager
 import superlht.com.loadinglibrary.R
 import java.util.*
 
@@ -18,6 +17,8 @@ import java.util.*
  * Created by Hatim Liu on 2017/8/16.
  */
 class HTLoading(context: Context) : DrawFinishListener {
+
+    private val manager = HTLoadingManager.getManager()
 
     private val view: View = LayoutInflater.from(context).inflate(R.layout.loading_view, null)
 
@@ -35,7 +36,7 @@ class HTLoading(context: Context) : DrawFinishListener {
 
     private var interceptBack = true
 
-    private var listener: DialogDismissListener? = null
+    private var listener: OnDialogDismissListener? = null
 
     private var customSuccessView: View? = null
 
@@ -43,12 +44,20 @@ class HTLoading(context: Context) : DrawFinishListener {
 
     private var customLoadingView: View? = null
 
+    private var dismissDelay: Long = manager.dismissDelay
+
+    private var drawColor: Int = manager.drawColor
+
+    private var isAutoDismiss: Boolean = manager.isAutoDismiss
+
 
     init {
-//        viewList.add(view.failedView)
         viewList.add(view.loadingView)
         viewList.add(view.failedView)
+        viewList.add(view.successView)
+        viewList.add(view.customView)
         view.failedView.setOnDrawFinishListener(this)
+        view.successView.setOnDrawFinishListener(this)
         loadingDialog.setCancelable(!interceptBack)
         loadingDialog.setContentView(view.loading_dialog, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT))
         initStyle()
@@ -86,6 +95,7 @@ class HTLoading(context: Context) : DrawFinishListener {
             view.customView.visibility = View.VISIBLE
             view.customView.addView(it)
             loadingDialog.show()
+            onDrawFinished(it)
         }
     }
 
@@ -97,6 +107,7 @@ class HTLoading(context: Context) : DrawFinishListener {
             view.customView.visibility = View.VISIBLE
             view.customView.addView(it)
             loadingDialog.show()
+            onDrawFinished(it)
         }
     }
 
@@ -119,7 +130,7 @@ class HTLoading(context: Context) : DrawFinishListener {
     }
 
     //当Dialog消失时的回调
-    fun setOnDialogDismissListener(listener: DialogDismissListener) {
+    fun setOnDialogDismissListener(listener: OnDialogDismissListener) {
         this.listener = listener
     }
 
@@ -133,13 +144,22 @@ class HTLoading(context: Context) : DrawFinishListener {
         return this
     }
 
-    fun setFailedText(string: String) {
+    fun setFailedText(string: String): HTLoading {
         failedStr = string
+        return this
     }
 
+    fun setIsAutoDismiss(boolean: Boolean): HTLoading {
+        isAutoDismiss = boolean
+        return this
+    }
 
     fun showSuccess() {
-
+        hideAll()
+        view.successView.visibility = View.VISIBLE
+        loadingDialog.show()
+        view.text.text = successStr
+        view.successView.startAnim()
     }
 
     fun showFailed() {
@@ -150,27 +170,35 @@ class HTLoading(context: Context) : DrawFinishListener {
         view.failedView.startAnim()
     }
 
-    fun setnterceptBack(boolean: Boolean) {
+    fun setnterceptBack(boolean: Boolean): HTLoading {
         interceptBack = boolean
         loadingDialog.setCancelable(!interceptBack)
+        return this
     }
 
-    fun setTextSize(size: Float) {
+    fun setTextSize(size: Float): HTLoading {
         textSize = size
         view.text.textSize = textSize
+        return this
     }
 
-    fun setSize(size: Int) {
+    fun setSize(size: Int): HTLoading {
         setSize(size, size)
+        return this
     }
 
-    fun setDrawColor(color: Int) {
-
+    fun setDrawColor(color: Int): HTLoading {
+        drawColor = color
+        viewList
+                .filterIsInstance<BaseLoadingView>()
+                .forEach { it.setDrawColor(color) }
+        return this
     }
 
-    fun setSize(width: Int, height: Int) {
+    fun setSize(width: Int, height: Int): HTLoading {
         view.loadingView.layoutParams.height = height
         view.loadingView.layoutParams.width = width
+        return this
     }
 
 
@@ -186,13 +214,12 @@ class HTLoading(context: Context) : DrawFinishListener {
         listener?.dialogDismiss()
     }
 
+    //动画加载完成时的回调
     override fun onDrawFinished(view: View) {
+        if (isAutoDismiss)
+            Handler().postDelayed({
+                dismiss()
+            }, dismissDelay)
     }
 
-    companion object {
-        private var manager: LoadingManager = LoadingManager()
-        fun init(manager: LoadingManager) {
-            this.manager = manager
-        }
-    }
 }

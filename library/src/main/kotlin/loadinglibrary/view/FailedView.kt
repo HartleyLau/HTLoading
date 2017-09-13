@@ -3,14 +3,11 @@ package loadinglibrary.view
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
-import android.view.View
 import android.view.animation.LinearInterpolator
 import loadinglibrary.listener.DrawFinishListener
 import loadinglibrary.util.SizeUtil
@@ -18,10 +15,8 @@ import loadinglibrary.util.SizeUtil
 /**
  * Created by Hatim Liu on 2017/8/16.
  */
-class FailedView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
+class FailedView(context: Context?, attrs: AttributeSet?) : BaseLoadingView(context, attrs) {
     private val mPaint: Paint = Paint()
-    private var mWidth = 0f
-    private var mPadding = 0f
     private var valueAnimator = ValueAnimator.ofFloat(0f, 2f)
     private var endAngle = 0f
     private val mGap = 15f //内部×与圆的距离
@@ -32,18 +27,10 @@ class FailedView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
     init {
         mPaint.isAntiAlias = true
         mPaint.style = Paint.Style.STROKE
-        mPaint.color = Color.WHITE
+        mPaint.color = color
         mPaint.strokeWidth = 8f
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if (measuredWidth > height)
-            mWidth = measuredHeight.toFloat()
-        else
-            mWidth = measuredWidth.toFloat()
-        mPadding = 5f
-    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -97,8 +84,7 @@ class FailedView(context: Context?, attrs: AttributeSet?) : View(context, attrs)
 
         valueAnimator.addUpdateListener({ valueAnimator ->
             val value = valueAnimator.animatedValue as Float
-            if (value <= 1f)
-                endAngle = 360 * value
+            endAngle = 360 * value
             progress = value
             invalidate()
         })

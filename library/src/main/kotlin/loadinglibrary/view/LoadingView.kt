@@ -9,51 +9,40 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
-import android.view.View
 import android.view.animation.*
 
 
 /**
  * Created by Hatim Liu on 2017/8/16.
  */
-class LoadingView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
-    private var mWidth = 0f
-    private var mPadding = 0f
+class LoadingView(context: Context?, attrs: AttributeSet?) : BaseLoadingView(context, attrs) {
     private var startAngle = 0f
     private val mPaint: Paint = Paint()
-    private val color = Color.argb(100, 255, 255, 255)
+    private val bgColor = Color.argb(100, 255, 255, 255)
     private val mPaint2: Paint = Paint()
     private var valueAnimator = ValueAnimator.ofFloat(0f, 1f)
 
     init {
         mPaint.isAntiAlias = true
         mPaint.style = Paint.Style.STROKE
-        mPaint.color = color
+        mPaint.color = bgColor
         mPaint.strokeWidth = 8f
         mPaint2.isAntiAlias = true
         mPaint2.style = Paint.Style.STROKE
-        mPaint2.color = color
+        mPaint2.color = bgColor
         mPaint2.strokeWidth = 8f
     }
 
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        mPaint2.color = color
+        mPaint2.color = bgColor
         canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - mPadding, mPaint2)
-        mPaint.color = Color.WHITE
+        mPaint.color = color
         val rectF = RectF(mPadding, mPadding, mWidth - mPadding, mWidth - mPadding)
         canvas.drawArc(rectF, startAngle, 100f, false, mPaint)
     }
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if (measuredWidth > height)
-            mWidth = measuredHeight.toFloat()
-        else
-            mWidth = measuredWidth.toFloat()
-        mPadding = 5f
-    }
 
     fun startAnim(speed: Long = 1000) {
         stopAnim()
