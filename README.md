@@ -14,6 +14,7 @@
 ## 效果
 
 ![](/img/Effect.gif)
+![](/img/CustomView.gif)
 
 ## 基本使用
 
