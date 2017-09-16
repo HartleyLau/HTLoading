@@ -91,7 +91,7 @@ HTLoadingManager.loadText("正在加载...").successText("加载成功")
 
 有任何问题欢迎issue提出
 
-### [更新日志]()
+### [更新日志](CHANGELOG.md)
 
 ## License
 
