@@ -85,9 +85,13 @@ HTLoadingManager.loadText("正在加载...").successText("加载成功")
 
 ### 感谢
 
-[LoadingDialog-ForgetAll](https://github.com/ForgetAll/LoadingDialog)
+[ForgetAll/LoadingDialog](https://github.com/ForgetAll/LoadingDialog)
+
+[ybq/Android-SpinKit](https://github.com/ybq/Android-SpinKit)
 
 有任何问题欢迎issue提出
+
+### [更新日志]()
 
 ## License
 
