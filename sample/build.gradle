@@ -8,12 +8,18 @@ android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
-        applicationId "superlht.com.htloading"
+        applicationId "com.superlht.dialogsample"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    sourceSets {
+        main {
+            java.srcDirs = [
+                    'src/main/kotlin'
+            ]
+        }
     }
     buildTypes {
         release {

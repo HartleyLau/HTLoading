@@ -1,1 +1,1 @@
-include ':sample', ':HTLoading'
+include ':Sample', ':HTLoading'

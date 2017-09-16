@@ -9,19 +9,19 @@
     android:orientation="vertical"
     android:padding="20dp">
 
-    <loadinglibrary.view.FailedView
+    <com.superlht.htloading.view.FailedView
         android:id="@+id/failedView"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:visibility="gone" />
 
-    <loadinglibrary.view.SuccessView
+    <com.superlht.htloading.view.SuccessView
         android:id="@+id/successView"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:visibility="gone" />
 
-    <loadinglibrary.view.LoadingView
+    <com.superlht.htloading.view.LoadingView
         android:id="@+id/loadingView"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -34,7 +34,7 @@
         android:padding="5dp"
         android:visibility="gone" />
 
-    <!--<loadinglibrary.spinkit.SpinKitView-->
+    <!--<loadinglibrcom.superlht.htloading.spinkitnkit.SpinKitView-->
     <!--android:id="@+id/spinKitView"-->
     <!--android:layout_width="61dp"-->
     <!--android:layout_height="61dp"-->
