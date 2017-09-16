@@ -29,9 +29,17 @@
 
     <FrameLayout
         android:id="@+id/customView"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:padding="5dp"
         android:visibility="gone" />
+
+    <!--<loadinglibrary.spinkit.SpinKitView-->
+    <!--android:id="@+id/spinKitView"-->
+    <!--android:layout_width="61dp"-->
+    <!--android:layout_height="61dp"-->
+    <!--android:padding="5dp"-->
+    <!--android:visibility="gone" />-->
 
     <TextView
         android:id="@+id/text"

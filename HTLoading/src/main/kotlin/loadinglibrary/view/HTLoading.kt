@@ -3,14 +3,19 @@ package loadinglibrary.view
 import android.app.Dialog
 import android.content.Context
 import android.os.Handler
+import android.support.annotation.StyleRes
+import android.view.ContextThemeWrapper
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.TextView
 import kotlinx.android.synthetic.main.loading_view.view.*
 import loadinglibrary.listener.DrawFinishListener
 import loadinglibrary.listener.OnDialogDismissListener
 import loadinglibrary.manager.HTLoadingManager
+import loadinglibrary.spinkit.SpinKitView
+import loadinglibrary.spinkit.Style
 import superlht.com.loadinglibrary.R
 import java.util.*
 
@@ -18,7 +23,7 @@ import java.util.*
 /**
  * Created by Hatim Liu on 2017/8/16.
  */
-class HTLoading(context: Context) : DrawFinishListener {
+class HTLoading(private val context: Context) : DrawFinishListener {
 
     private val manager = HTLoadingManager.getManager()
 
@@ -58,6 +63,7 @@ class HTLoading(context: Context) : DrawFinishListener {
         viewList.add(view.failedView)
         viewList.add(view.successView)
         viewList.add(view.customView)
+//        viewList.add(view.spinKitView)
         view.failedView.setOnDrawFinishListener(this)
         view.successView.setOnDrawFinishListener(this)
         loadingDialog.setCancelable(!interceptBack)
@@ -156,6 +162,18 @@ class HTLoading(context: Context) : DrawFinishListener {
         return this
     }
 
+    fun showSpinKit(@StyleRes style: Int) {
+        hideAll()
+        val spinView = SpinKitView(ContextThemeWrapper(context, style))
+        spinView?.let {
+            view.customView.removeAllViews()
+            view.customView.visibility = View.VISIBLE
+            view.customView.addView(it)
+        }
+        view.text.visibility = View.GONE
+        loadingDialog.show()
+    }
+
     fun showSuccess() {
         hideAll()
         view.successView.visibility = View.VISIBLE
@@ -221,6 +239,7 @@ class HTLoading(context: Context) : DrawFinishListener {
 
 
     private fun hideAll() {
+        view.text.visibility = View.VISIBLE
         for (view in viewList) {
             view.visibility = View.GONE
         }

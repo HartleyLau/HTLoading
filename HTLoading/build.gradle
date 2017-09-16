@@ -40,7 +40,7 @@ dependencies {
 repositories {
     mavenCentral()
 }
-version = "1.0.0"
+version = "1.0.1"
 
 // 定义两个链接，下面会用到。
 def siteUrl = 'https://github.com/lhtdeg/HTLoading' // 项目主页。
