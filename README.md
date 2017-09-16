@@ -26,6 +26,8 @@ implementation 'com.superlht:HTLoading:1.0.0'
 
 ## 使用方法
 
+### 显示默认动画
+
 如果全部使用默认配置，需要显示Loading的地方只需要调用:
 
 ```kotlin
@@ -45,6 +47,10 @@ HTLoading(this).setSuccessText("加载成功！").showSuccess()
 ```
 
 HTLoading支持链式调用，如HTLoading(this).setLoadingText("加载中...").setsetFailedText("加载失败").show()，调用show方法后不支持链式调用
+
+### 显示自定义View
+
+### 显示SpinKit动画
 
 ## API文档
 
