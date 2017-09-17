@@ -58,8 +58,7 @@ HTLoading支持链式调用，如HTLoading(this).setLoadingText("加载中...").
 
 ### 显示SpinKit动画
 
-![](/img/spinkit.gif){:height="50%" width="50%"}
-
+<img src="/img/spinkit.gif" width="300">
 
 | Style          | Preview                     |
 | -------------- | --------------------------- |
