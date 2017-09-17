@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">HTLoading</string>
     <string-array name="title">
-        <item>加载中-加载失败</item>
-        <item>显示自定义加载动画</item>
+        <item>显示默认效果</item>
+        <item>显示自定义加载效果</item>
+        <item>显示SpinKit动画</item>
     </string-array>
 </resources>

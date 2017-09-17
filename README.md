@@ -13,15 +13,21 @@
 
 ## 效果
 
-![](/img/Effect.gif)
-![](/img/CustomView.gif)
+<img src="/img/Effect.gif" style="zoom:50%" />
+
+<img src="/img/CustomView.gif" style="zoom:50%" />
 
 ## 基本使用
 
 步骤1.将依赖添加到项目的bulid.gradle里:
 
+Android Gradle plugin 3.0+
 ```groovy
-implementation 'com.superlht:HTLoading:1.0.0'
+implementation 'com.superlht:HTLoading:1.0.1'
+```
+else
+```groovy
+compile 'com.superlht:HTLoading:1.0.1'
 ```
 
 ## 使用方法
@@ -51,6 +57,25 @@ HTLoading支持链式调用，如HTLoading(this).setLoadingText("加载中...").
 ### 显示自定义View
 
 ### 显示SpinKit动画
+
+<img src="img/spinkit.gif" style="zoom:50%" />
+
+| Style          | Preview                     |
+| -------------- | --------------------------- |
+| RotatingPlane  | ![](img/RotatingPlane.gif)  |
+| DoubleBounce   | ![](img/DoubleBounce.gif)   |
+| Wave           | ![](img/Wave.gif)           |
+| WanderingCubes | ![](img/WanderingCubes.gif) |
+| Pulse          | ![](img/Pulse.gif)          |
+| ChasingDots    | ![](img/ChasingDots.gif)    |
+| ThreeBounce    | ![](img/ThreeBounce.gif)    |
+| Circle         | ![](img/Circle.gif)         |
+| CubeGrid       | ![](img/CubeGrid.gif)       |
+| FadingCircle   | ![](img/FadingCircle.gif)   |
+| FoldingCube    | ![](img/FoldingCube.gif)    |
+| RotatingCircle | ![](img/RotatingCircle.gif) |
+
+## 
 
 ## API文档
 

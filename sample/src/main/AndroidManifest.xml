@@ -17,5 +17,6 @@
         </activity>
         <activity android:name=".DefaultActivity" />
         <activity android:name=".CustomActivity" />
+        <activity android:name=".SpinKitActivity" />
     </application>
 </manifest>

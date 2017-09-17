@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
             when (p) {
                 0 -> startActivity<DefaultActivity>()
                 1 -> startActivity<CustomActivity>()
+                2 -> startActivity<SpinKitActivity>()
             }
         }
     }

@@ -1,10 +1,9 @@
 package com.superlht.dialogsample
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.superlht.dialogsample.R
+import com.superlht.htloading.view.HTLoading
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
-import com.superlht.htloading.view.HTLoading
 
 /**
  * Created by lht on 2017-09-13.
@@ -12,7 +11,7 @@ import com.superlht.htloading.view.HTLoading
 class DefaultActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_default)
+        setContentView(R.layout.activity_main)
         val loading = HTLoading(this)
         loading.show()
         doAsync {
