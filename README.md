@@ -13,9 +13,9 @@
 
 ## 效果
 
-<img src="/img/Effect.gif" style="zoom:50%" />
+<img src="/img/Effect.gif" width="300">
 
-<img src="/img/CustomView.gif" style="zoom:50%" />
+<img src="/img/CustomView.gif" width="300">
 
 ## 基本使用
 
